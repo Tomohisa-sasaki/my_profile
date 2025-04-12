@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="個人プロフィールサイトのサンプル" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile</title>
+  <!-- 外部CSSの読み込み -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ヘッダー（ナビゲーション） -->
+  <header class="site-header">
+    <div class="logo">MySite</div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- メインビジュアル -->
+  <section class="hero">
+    <h1>Welcome to My Website</h1>
+    <p>ここにキャッチコピーやメッセージを入れてください。</p>
+  </section>
+
+  <!-- Aboutセクション -->
+  <section id="about" class="section about-section">
+    <h2>About Me</h2>
+    <div class="profile">
+      <img src="images/profile_sample.jpg" alt="プロフィール写真のサンプル" class="profile-img" />
+      <div class="profile-text">
+        <p>
+          ここに自己紹介文を入れてください。<br />
+          - 経歴や実績を箇条書きにしてもOK。<br />
+          - 得意分野、使用スキル、趣味などを紹介しても良いでしょう。<br />
+        </p>
+        <p>
+          例）Webエンジニアとしてフロントエンド・バックエンドの両方を経験し、  
+          React や Vue.js を用いた開発から、WordPress を用いたサイト構築まで幅広く手掛けています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Worksセクション -->
+  <section id="works" class="section works-section">
+    <h2>My Works</h2>
+    <p>過去の制作物やプロジェクトを紹介します。</p>
+    <div class="works-list">
+      <article class="work-item">
+        <img src="images/work_sample1.jpg" alt="制作物1のサンプル" />
+        <h3>作品名 / プロジェクト名</h3>
+        <p>制作背景や使用技術、担当範囲などを簡単に記載。</p>
+        <a href="#" class="btn">詳細を見る</a>
+      </article>
+      <article class="work-item">
+        <img src="images/work_sample2.jpg" alt="制作物2のサンプル" />
+        <h3>作品名 / プロジェクト名</h3>
+        <p>制作背景や使用技術、担当範囲などを簡単に記載。</p>
+        <a href="#" class="btn">詳細を見る</a>
+      </article>
+      <article class="work-item">
+        <img src="images/work_sample3.jpg" alt="制作物3のサンプル" />
+        <h3>作品名 / プロジェクト名</h3>
+        <p>制作背景や使用技術、担当範囲などを簡単に記載。</p>
+        <a href="#" class="btn">詳細を見る</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Blogセクション -->
+  <section id="blog" class="section blog-section">
+    <h2>Blog</h2>
+    <p>最新の記事一覧やお知らせなどを掲載。</p>
+    <div class="blog-list">
+      <article class="blog-item">
+        <h3>ブログ記事タイトル1</h3>
+        <p class="date">2025/04/12</p>
+        <p>ブログ記事の概要や抜粋がここに入ります。続きを読みたい場合のリンクボタンを設置。</p>
+        <a href="#" class="btn">続きを読む</a>
+      </article>
+      <article class="blog-item">
+        <h3>ブログ記事タイトル2</h3>
+        <p class="date">2025/04/10</p>
+        <p>ブログ記事の概要や抜粋がここに入ります。続きを読みたい場合のリンクボタンを設置。</p>
+        <a href="#" class="btn">続きを読む</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Contactセクション -->
+  <section id="contact" class="section contact-section">
+    <h2>Contact</h2>
+    <p>お問い合わせやSNSへのリンクをまとめます。</p>
+    <div class="contact-wrapper">
+      <!-- 連絡先一覧 -->
+      <div class="contact-info">
+        <h3>ご連絡方法</h3>
+        <ul>
+          <li>Email: <a href="mailto:sample@example.com">sample@example.com</a></li>
+          <li>Twitter: <a href="#">@SampleUser</a></li>
+          <li>Instagram: <a href="#">@sample_insta</a></li>
+        </ul>
+      </div>
+      <!-- フォーム（フロント側のサンプル） -->
+      <div class="contact-form">
+        <h3>お問い合わせフォーム</h3>
+        <form action="#" method="post">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">メッセージ</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit" class="btn">送信</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p>&copy; 2025 My Profile Site</p>
+  </footer>
+</body>
+</html>
