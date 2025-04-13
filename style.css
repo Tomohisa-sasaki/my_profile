@@ -5,7 +5,7 @@
 }
 
 :root {
-    --main-color: #007bff;
+    --main-color: #070925;
     --main-color-dark: #0056b3;
     --bg-color: #e3dcdc;
     --text-color: #333;
@@ -15,7 +15,7 @@
 }
 
 body {
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic UI", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background: var(--bg-color);
@@ -32,7 +32,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--card-bg);
+    background: #060f2f;
     padding: 10px 20px;
     border-bottom: 1px solid var(--light-border);
     position: sticky;
@@ -44,6 +44,10 @@ body {
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
+}
+
+.logo .logo-name {
+    font-size: 0.9rem;
 }
 
 .nav-menu ul {
