@@ -36,7 +36,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(to bottom, #08163f 0%, #060f2f 100%); /* subtle gradient for depth */
-    padding: 20px 40px;
+    padding: 40px 60px;
     border-bottom: 1px solid var(--light-border);
     position: sticky;
     top: 0;
