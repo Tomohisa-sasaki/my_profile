@@ -5,20 +5,23 @@
 }
 
 :root {
-    --main-color: #070925;
-    --main-color-dark: #0056b3;
-    --bg-color: #181819;
-    --text-color: #d0d0d0;
-    --light-border: #ddd;
-    --card-bg: #0a3d2e;
-    --card-border: #313131;
+    --main-color: #3399ff;
+    --main-color-dark: #2673bf;
+    --bg-color: #0f0f0f;
+    --text-color: #f0f0f0;
+    --light-border: #333;
+    --card-bg: #1b1b32;
+    --card-border: #444;
+    /* For a subtle gradient from black to darker shade */
+    --bg-gradient-start: #0f0f0f;
+    --bg-gradient-end: #000;
 }
 
 body {
     font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic UI", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background: var(--bg-color);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
 }
 
 .section {
@@ -79,6 +82,7 @@ body {
     align-items: center;
     color: #ffffff;
     position: relative;
+    animation: fadeInHero 1.5s ease-in-out forwards;
 }
 
 .hero h1 {
@@ -95,7 +99,6 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    align-items: center;
 }
 
 .profile-img {
@@ -128,8 +131,9 @@ body {
 }
 
 .research-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    background-color: #101020; /* A slightly different color for contrast */
 }
 
 .research-item img {
@@ -262,5 +266,16 @@ body {
     }
     .blog-section .blog-list {
         grid-template-columns: 1fr;
+    }
+}
+
+@keyframes fadeInHero {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
