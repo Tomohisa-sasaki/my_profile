@@ -75,7 +75,7 @@ body {
 .hero {
     width: 100%;
     height: 100vh; /* 画面いっぱいを使う */
-    background: url("/Users/tomohisa/myprofile/images/hero.jpg") center/cover no-repeat;
+    background: url("images/hero.jpg") center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
