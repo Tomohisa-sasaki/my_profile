@@ -35,7 +35,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #060f2f;
+    background: rgba(6, 15, 47, 0.8);
     padding: 20px 40px;
     border-bottom: 1px solid var(--light-border);
     position: sticky;
