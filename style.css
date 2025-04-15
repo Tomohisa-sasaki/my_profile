@@ -5,8 +5,8 @@
 }
 
 :root {
-    --main-color: #3399ff;
-    --main-color-dark: #2673bf;
+    --main-color: #0c4376;
+    --main-color-dark: #24323f;
     --bg-color: #0f0f0f;
     --text-color: #f0f0f0;
     --light-border: #333;
@@ -75,7 +75,7 @@ body {
 .hero {
     width: 100%;
     height: 100vh; /* 画面いっぱいを使う */
-    background: url("images/hero.jpg") center/cover no-repeat;
+    background: url("images/IMG_4669.AVIF") center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,6 +102,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: space-between;
+    padding: 20px; /* 内側に余白を追加 */
+    margin-top: 20px; /* 上側に外側の余白を追加 */
 }
 
 .profile-img {
@@ -109,12 +112,38 @@ body {
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.1); /* カーソル時に 5% 拡大 */
 }
 
 .profile-text {
     flex: 1;
     min-width: 250px;
 }
+
+.profile-text p {
+    font-size: 1.1rem; /* 読みやすいサイズに調整 */
+    line-height: 1.8;
+    opacity: 0;  /* 初期状態は非表示 */
+    animation: fadeInSlide 2s ease-out forwards;
+    animation-fill-mode: both; /* 初期と終了のスタイルを確実に適用 */
+    animation-delay: 0.5s;  /* 少し遅れてアニメーション開始 */
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 .research-section .research-list {
     display: flex;
@@ -189,14 +218,28 @@ body {
     gap: 20px;
 }
 
-
 .contact-info {
     flex: 1 1 100px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(20,20,20,0.8), rgba(10,10,10,0.8));
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
     padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
+
+.contact-info li {
+    margin-bottom: 15px;
+    line-height: 1.6; /* Increased line-height for better readability */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.contact-info li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
 .contact-form {
     flex: 1 1 200px;
     background: var(--card-bg);
@@ -211,13 +254,11 @@ body {
     margin: 0;
 }
 
-.contact-info li {
-    margin-bottom: 15px;
-    line-height: 1.6; /* Increased line-height for better readability */
-}
 
 .contact-info h3 {
-    margin-bottom: 20px; /* ヘッダー下に余白を追加 */
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .contact-form label {
@@ -245,16 +286,21 @@ body {
 
 .btn {
     display: inline-block;
-    padding: 8px 16px;
-    background: var(--main-color);
+    padding: 12px 24px;
+    background: linear-gradient(45deg, var(--main-color), var(--main-color-dark));
     color: #fff;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background 0.3s;
+    border-radius: 6px;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
-    background: var(--main-color-dark);
+    transform: scale(1.05); /* ホバー時に少し拡大 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ホバー時にシャドウを追加 */
+}
+
+.btn:active {
+    transform: scale(0.98); /* クリック時に少し縮小 */
 }
 
 .site-footer {
