@@ -1,29 +1,40 @@
+/* Reset and basic setup */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* Pastel Color Palette */
 :root {
-    --main-color: #0c4376;
-    --main-color-dark: #24323f;
-    --bg-color: #0f0f0f;
-    --text-color: #f0f0f0;
-    --light-border: #333;
-    --card-bg: #1b1b32;
-    --card-border: #444;
-    /* For a subtle gradient from black to darker shade */
-    --bg-gradient-start: #0f0f0f;
-    --bg-gradient-end: #000;
+    --main-color: #243f5a;        /* Pastel Blue */
+    --main-color-dark: #c1d4e3;   /* Powder Blue */
+    --bg-color: #fffafa;          /* Snow (Off-white) */
+    --text-color: #5f799c;        /* Muted Dark Blue/Gray */
+    --light-border: #d1d5db;      /* Light Pastel Gray */
+    --card-bg: #f0f8ff;          /* Alice Blue */
+    --card-border: #cce7ff;       /* Light Blue Border */
+    --accent-color: #baffc9;      /* Light Pastel Green */
+    --bg-light: #fffafa;          /* Snow (Off-white) */
+    --font-color: #0f366a;        /* Muted Dark Blue/Gray */
+    --heading-color: #25496c;     /* Pastel Blue for headings */
+    --button-bg: #baffc9;         /* Light Pastel Green for buttons */
+    --button-text: #5f799c;       /* Muted Dark Blue/Gray for button text */
+    --shadow-color: rgba(167, 199, 231, 0.4); /* Soft shadow based on main color */
 }
 
 body {
-    font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic UI", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Fira Code', 'Courier New', monospace;
     line-height: 1.6;
-    color: var(--text-color);
-    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--font-color); /* Use main text color */
+    background: var(--bg-light); /* Use light background */
 }
 
+/* Section layout */
 .section {
     width: 90%;
     max-width: 1000px;
@@ -31,31 +42,46 @@ body {
     padding: 60px 0;
 }
 
+/* ensure in‑page anchors account for sticky header */
+section {
+    scroll-margin-top: 120px; /* Adjust if header height changes */
+}
+
+/* Header */
 .site-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background: rgba(6, 15, 47, 0.8); /* 半透明を適用 */
-    padding: 40px 40px;
-    border-bottom: 1px solid var(--light-border);
+    background: var(--bg-light); /* Light background */
+    padding: 10px 0;
+    gap: 4px;
+    border-bottom: 1px solid var(--accent-color); /* Pastel green border */
     position: sticky;
     top: 0;
     z-index: 999;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Lighter shadow */
 }
 
 .logo {
     font-weight: bold;
     font-size: 1.2rem;
+    color: var(--text-color); /* Ensure logo text is readable */
 }
 
 .logo .logo-name {
     font-size: 0.9rem;
 }
 
+/* Navigation */
 .nav-menu ul {
+    justify-content: center;
     display: flex;
     list-style: none;
+}
+
+.nav-menu {
+    margin-top: -4px;
 }
 
 .nav-menu li {
@@ -64,73 +90,156 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--font-color); /* Main text color for links */
     transition: color 0.3s;
+    display: inline-block;
+    padding: 6px 12px;
+    position: relative;
+    pointer-events: auto;
 }
 
 .nav-menu a:hover {
-    color: var(--main-color);
+    color: var(--main-color); /* Hover with pastel blue */
 }
 
+/* animated underline */
+.nav-menu a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color); /* Pastel green underline */
+    transition: width 0.4s cubic-bezier(0.25, 1.5, 0.5, 1);
+}
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
 .hero {
     width: 100%;
-    height: 100vh; /* 画面いっぱいを使う */
-    background: url("images/IMG_4669.AVIF") center/cover no-repeat;
+    height: 100vh;
+    /* Added a light overlay to increase transparency (make image less visible) */
+    background: linear-gradient(rgba(255, 250, 250, 0.3), rgba(255, 250, 250, 0.3)), url("images/スクリーンショット 2025-05-01 20.28.27.png") center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
-    text-align: center; /* 中央寄せ */
+    color: var(--heading-color); /* Use heading color for hero text */
+    text-align: center;
     position: relative;
     animation: fadeInHero 1.5s ease-in-out forwards;
 }
 
+/* Mac‑style dock inside hero */
+.hero-dock {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    pointer-events: auto;
+}
+
+.hero-dock img {
+    /* allow natural image size */
+    width: auto;
+    height: auto;
+    /* optional: cap size but preserve aspect ratio */
+    max-width: 96px;
+    max-height: 96px;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease;
+}
+
+.hero-dock img:hover {
+    transform: scale(1.3) translateY(-10px);
+}
+
 .hero h1 {
-    font-size: 3rem; /* さらに大きくインパクトを */
+    font-size: 3rem;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 3px rgba(95, 121, 156, 0.3); /* Softer shadow */
 }
 
 .hero p {
     font-size: 1.5rem;
-    max-width: 800px; /* テキスト幅を制限して見やすく */
-    margin: 0 auto;  /* 中央寄せ */
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-color); /* Use standard text color for paragraph */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5); /* Light shadow for contrast */
 }
 
+/* About Section */
 .about-section .profile {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
-    padding: 20px; /* 内側に余白を追加 */
-    margin-top: 20px; /* 上側に外側の余白を追加 */
+    padding: 20px;
+    margin-top: 20px;
 }
 
 .profile-img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
     transition: transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    border: 2px solid var(--main-color-dark); /* Subtle border */
 }
 
 .profile-img:hover {
-    transform: scale(1.1); /* カーソル時に 5% 拡大 */
+    transform: scale(1.1);
 }
 
+/* About Section – Profile Text Card */
 .profile-text {
     flex: 1;
     min-width: 250px;
+    background: var(--card-bg);
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
+/* About Section – Text and Lists */
 .profile-text p {
-    font-size: 1.1rem; /* 読みやすいサイズに調整 */
-    line-height: 1.8;
-    opacity: 0;  /* 初期状態は非表示 */
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: var(--font-color);
+    line-height: 1.6;
+    opacity: 0;
     animation: fadeInSlide 2s ease-out forwards;
-    animation-fill-mode: both; /* 初期と終了のスタイルを確実に適用 */
-    animation-delay: 0.5s;  /* 少し遅れてアニメーション開始 */
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+}
+
+.profile-text ul.sub-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 16px;
+}
+
+.profile-text ul.sub-list li {
+    position: relative;
+    padding-left: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.profile-text ul.sub-list li::before {
+    content: "\f00c"; /* FontAwesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 0.9rem;
+    color: var(--accent-color);
 }
 
 @keyframes fadeInSlide {
@@ -144,7 +253,7 @@ body {
     }
 }
 
-
+/* Research Section */
 .research-section .research-list {
     display: flex;
     flex-wrap: wrap;
@@ -153,36 +262,53 @@ body {
 
 .research-item {
     flex: 1 1 calc(33.33% - 20px);
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    padding: 10px;
+    background: var(--card-bg); /* Light card background */
+    border: 1px solid var(--light-border); /* Light pastel border */
+    border-radius: 8px; /* Slightly more rounded */
+    padding: 15px; /* More padding */
     text-align: center;
-    transition: box-shadow 0.3s, transform 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s, background-color 0.3s;
     margin-bottom: 20px;
 }
 
 .research-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--shadow-color); /* Soft pastel shadow */
     transform: translateY(-5px) scale(1.02);
-    background-color: #101020; /* A slightly different color for contrast */
+    background-color: var(--main-color-dark); /* Powder blue on hover */
+}
+/* Change text color on hover for better contrast */
+.research-item:hover h3,
+.research-item:hover p {
+    color: #fff; /* White text on powder blue background */
 }
 
 .research-item img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px; /* More space */
+    transition: transform 0.4s ease;
+    border-radius: 4px; /* Rounded corners for image */
+}
+
+.research-item:hover img {
+    transform: scale(1.05);
 }
 
 .research-item h3 {
     font-size: 1.2rem;
-    margin-bottom: 5px;
+    margin-bottom: 8px; /* More space */
+    color: var(--heading-color); /* Use heading color */
+    transition: color 0.3s; /* Add transition for text color change */
 }
 
 .research-item p {
     margin-bottom: 10px;
+    color: var(--font-color); /* Use main text color */
+    transition: color 0.3s; /* Add transition for text color change */
 }
 
+/* Blog Section */
 .blog-section .blog-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -190,28 +316,49 @@ body {
 }
 
 .blog-item {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    padding: 10px;
+    background: var(--card-bg); /* Light card background */
+    border: 1px solid var(--light-border); /* Light pastel border */
+    border-radius: 8px;
+    padding: 15px;
     transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .blog-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px var(--shadow-color); /* Soft pastel shadow */
     transform: translateY(-5px);
 }
 
 .blog-item h3 {
     margin-bottom: 5px;
+    color: var(--heading-color); /* Use heading color */
 }
 
 .blog-item .date {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--main-color); /* Use pastel blue for date */
     margin-bottom: 8px;
 }
 
+/* Gallery Section */
+.gallery-section .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+/* Contact Section */
 .contact-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -219,33 +366,12 @@ body {
 }
 
 .contact-info {
-    flex: 1 1 100px;
-    background: linear-gradient(135deg, rgba(20,20,20,0.8), rgba(10,10,10,0.8));
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-}
-
-.contact-info li {
-    margin-bottom: 15px;
-    line-height: 1.6; /* Increased line-height for better readability */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    padding: 5px;
-    border-radius: 4px;
-}
-
-.contact-info li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.02);
-}
-
-.contact-form {
-    flex: 1 1 200px;
+    flex: 1 1 200px; /* Adjusted flex basis */
     background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    padding: 20px;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    padding: 25px; /* More padding */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Lighter shadow */
 }
 
 .contact-info ul {
@@ -254,84 +380,321 @@ body {
     margin: 0;
 }
 
+.contact-info li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    padding: 8px; /* Add padding */
+    border-radius: 4px;
+    color: var(--font-color); /* Ensure correct text color */
+}
+
+.contact-info li:hover {
+    background-color: var(--main-color-dark); /* Powder blue background on hover */
+    color: #fff; /* White text on hover */
+    transform: scale(1.02);
+}
 
 .contact-info h3 {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 20px;
+    color: var(--heading-color); /* Use heading color */
+}
+
+.contact-form {
+    flex: 1 1 300px; /* Adjusted flex basis */
+    background: var(--card-bg); /* Light card background */
+    border: 1px solid var(--light-border); /* Light pastel border */
+    border-radius: 8px;
+    padding: 25px; /* More padding */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Lighter shadow */
+}
+
+/* card pop‑in animation */
+.research-item,
+.blog-item,
+.contact-form,
+.contact-info { /* Added contact-info */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.research-item.is-visible,
+.blog-item.is-visible,
+.contact-form.is-visible,
+.contact-info.is-visible { /* Added contact-info */
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .contact-form label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
+    color: var(--text-color); /* Ensure label text color */
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px; /* Increased padding */
     margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    margin-bottom: 15px; /* Increased margin */
+    border: 1px solid var(--light-border);
     border-radius: 4px;
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Added box-shadow transition */
+    background-color: #fff; /* Ensure background is white */
+    color: var(--text-color); /* Ensure input text color */
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--main-color);
+    border-color: var(--main-color); /* Pastel blue border on focus */
+    box-shadow: 0 0 5px var(--shadow-color); /* Soft glow on focus */
 }
 
+/* Button */
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    background: linear-gradient(45deg, var(--main-color), var(--main-color-dark));
-    color: #fff;
+    background: var(--button-bg); /* Pastel green button background */
+    color: var(--button-text); /* Darker text for contrast */
+    font-weight: bold; /* Make button text bolder */
     text-decoration: none;
     border-radius: 6px;
+    border: none; /* Remove default border */
+    cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
-    transform: scale(1.05); /* ホバー時に少し拡大 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ホバー時にシャドウを追加 */
+    transform: scale(1.05);
+    background: var(--main-color); /* Pastel blue on hover */
+    color: #fff; /* White text on hover */
+    box-shadow: 0 4px 8px var(--shadow-color); /* Soft pastel shadow */
 }
 
 .btn:active {
-    transform: scale(0.98); /* クリック時に少し縮小 */
+    transform: scale(0.98);
 }
 
+/* Footer */
 .site-footer {
     text-align: center;
     padding: 20px 0;
-    background: var(--card-bg);
-    border-top: 1px solid var(--light-border);
+    background: var(--card-bg); /* Light card background for footer */
+    border-top: 1px solid var(--light-border); /* Light pastel border */
     margin-top: 40px;
+    color: var(--text-color); /* Ensure footer text color */
 }
 
+/* Section background */
+.about-section,
+.research-section,
+.blog-section,
+.contact-section {
+    background: var(--bg-light); /* Consistent light background */
+    /* Add padding to separate sections visually if needed */
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* Section Headings */
+.about-section h2,
+.research-section h2,
+.blog-section h2,
+.contact-section h2 {
+    color: var(--heading-color); /* Use heading color */
+    text-align: center; /* Center section headings */
+    margin-bottom: 40px; /* Add space below headings */
+    font-size: 2rem; /* Slightly larger headings */
+}
+
+/* General Typography */
+h1, h2, h3 {
+    font-weight: 700; /* Keep headings bold */
+    line-height: 1.2;
+    /* color: var(--heading-color); Applied specifically above */
+}
+
+p, li {
+    font-weight: 400; /* Normal weight might be more readable */
+    line-height: 1.8;
+    margin-bottom: 1em;
+    color: var(--font-color); /* Ensure correct text color */
+}
+
+/* Ensure MIT logo in the header scales well */
+.logo-img {
+    height: 80px; /* Adjusted size */
+    width: auto;
+    margin-bottom: 5px; /* Reduced margin */
+}
+
+/* fade‑in on scroll */
+.fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+}
+.fade-in-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Typewriter cursor for hero title */
+.hero h1::after {
+    content: '_';
+    animation: blink 1s step-start infinite;
+    color: var(--heading-color); /* Match heading color */
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* per‑character code reveal animation */
+.code-char {
+    opacity: 0;
+    display: inline-block;
+    animation: codeChar 0.6s ease-out forwards;
+    pointer-events: none;
+}
+@keyframes codeChar {
+    0%   { opacity: 0; transform: translateY(-0.2em) scale(0.9); filter: blur(2px); }
+    80%  { opacity: 0.8; filter: blur(1px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* Fix staggered letters in About Me heading */
+.about-section h2 .code-char {
+    animation-delay: 0ms !important; /* reveal all at once */
+}
+
+/* Ensure clickable area even when spans cover link */
+.nav-menu a .code-char {
+    pointer-events: none;
+}
+
+/* =====================
+   Responsive Tweaks
+   ===================== */
+
+/* Medium screens (Tablets) */
 @media (max-width: 768px) {
+    .site-header {
+        padding: 15px 0; /* More padding on smaller headers */
+    }
     .nav-menu ul {
-        flex-direction: column;
+        /* Keep horizontal on tablet, stack on mobile */
     }
     .nav-menu li {
-        margin: 10px 0;
+        margin-left: 15px; /* Slightly less spacing */
     }
     .hero {
-        height: 48vh;
+        height: 60vh; /* Adjust hero height */
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
     }
     .research-section .research-list {
-        flex-direction: column;
+        /* Keep flex layout, items will wrap */
     }
     .research-item {
-        flex: 1 1 100%;
+        flex: 1 1 calc(50% - 20px); /* Two columns on tablet */
     }
     .blog-section .blog-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack blog items */
+    }
+    .contact-wrapper {
+        flex-direction: column; /* Stack contact info and form */
+    }
+    .contact-info, .contact-form {
+        flex-basis: auto; /* Reset flex-basis */
+    }
+    .logo-img {
+        height: 70px;
+    }
+    .section {
+        width: 95%; /* Slightly wider on smaller screens */
     }
 }
 
+/* Small screens (Mobile) */
+@media (max-width: 480px) {
+
+    body { overflow-x: hidden; } /* Prevent horizontal scroll */
+
+    /* ---------- HEADER/NAV ---------- */
+    .site-header {
+        position: static; /* Unstick header on smallest screens */
+        border-bottom: none; /* Remove border if unsticking */
+        padding: 10px 0;
+    }
+    section {
+        scroll-margin-top: 20px; /* Reset scroll margin if header not sticky */
+    }
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0; /* Remove padding if centered */
+    }
+    .nav-menu li {
+        margin: 8px 0;
+        margin-left: 0; /* Remove left margin when stacked */
+    }
+    .logo-img {
+        height: 60px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero { height: 50vh; padding: 0 10px; }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; padding: 0 12px; }
+    .hero-dock { gap: 16px; bottom: 20px; }
+    .hero-dock img { width: 48px; height: 48px; }
+
+    /* ---------- ABOUT ---------- */
+    .about-section .profile { flex-direction: column; align-items: center; }
+    .profile-img { width: 120px; height: 120px; margin-bottom: 12px; }
+    .profile-text { text-align: center; }
+    /* Assuming .profile-list and .sub-list were intended inside .profile-text */
+    .profile-text li { /* Adjust list item styles if needed */
+        font-size: 1rem;
+        line-height: 1.4;
+        text-align: left; /* Keep list text left-aligned */
+    }
+    .profile-text ul { /* Adjust list styles if needed */
+         padding-left: 20px; /* Indent lists */
+         list-style: disc; /* Use standard bullets */
+    }
+
+
+    /* ---------- RESEARCH/BLOG ---------- */
+    .research-section .research-list { flex-direction: column; }
+    .research-item { flex: 1 1 100%; } /* Full width */
+    .research-item img { height: 160px; }
+    .blog-section .blog-list { grid-template-columns: 1fr; }
+
+    /* ---------- CONTACT ---------- */
+    .contact-info, .contact-form {
+        padding: 20px; /* Adjust padding */
+    }
+
+    /* ---------- GENERAL ---------- */
+    .section {
+        padding: 40px 0; /* Reduce section padding */
+    }
+    h2 {
+        font-size: 1.8rem; /* Reduce heading size */
+    }
+}
+
+/* FadeIn Animation (Keep as is) */
 @keyframes fadeInHero {
     0% {
         opacity: 0;
@@ -341,15 +704,4 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-h1, h2, h3 {
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-p, li {
-    font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 1em;
 }
